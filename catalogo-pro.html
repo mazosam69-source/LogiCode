@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo PRO | LogiCode</title>
+    <meta
+      name="description"
+      content="Descubre el catálogo web avanzado de LogiCode con productos, filtros, variantes, carrito y pedidos por WhatsApp."
+    />
+    <meta property="og:title" content="Catálogo PRO | LogiCode" />
+    <meta
+      property="og:description"
+      content="Catálogo web avanzado con filtros, carrito y pedido por WhatsApp."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="img/logo/favicon-placeholder.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/catalogo-pro.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body class="catalog-page">
+    <header class="catalog-header">
+      <div class="container catalog-header-inner">
+        <a href="index.html" class="brand brand-light" aria-label="Volver a LogiCode">
+          <span class="brand-mark">L</span>
+          <span class="brand-text">LogiCode</span>
+        </a>
+
+        <nav class="catalog-nav" aria-label="Navegación catálogo">
+          <a href="index.html">Inicio</a>
+          <a href="#productos">Categorías</a>
+          <a href="#productos">Buscar</a>
+          <a href="admin.html">Admin demo</a>
+        </nav>
+
+        <div class="catalog-actions">
+          <div class="search-box">
+            <input id="searchInput" type="search" placeholder="Buscar producto" aria-label="Buscar producto" />
+          </div>
+          <button class="cart-button" id="cartToggle" aria-label="Ver carrito">
+            <span>Carrito</span>
+            <strong id="cartCount">0</strong>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="catalog-hero">
+        <div class="container catalog-hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Catálogo PRO</span>
+            <h1>Moderniza tu experiencia de venta.</h1>
+            <p>
+              Una solución comercial avanzada para presentar productos, gestionar promociones, filtrar opciones y cerrar
+              pedidos rápidamente por WhatsApp.
+            </p>
+            <div class="hero-actions">
+              <a href="#productos" class="btn btn-primary">Ver catalogo</a>
+              <a href="index.html" class="btn btn-ghost">Volver a LogiCode</a>
+            </div>
+          </div>
+          <div class="promo-panel">
+            <div class="promo-card">
+              <span>Promoción</span>
+              <strong>Hasta 30% OFF</strong>
+              <p>En productos seleccionados para esta semana.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="catalog-tools container">
+        <div class="category-filter" id="categoryFilters" aria-label="Categorías de productos"></div>
+      </section>
+
+      <section id="productos" class="catalog-main container">
+        <aside class="filters-panel" aria-label="Filtros del catálogo">
+          <div class="filter-header">
+            <h2>Filtros</h2>
+            <button type="button" id="resetFilters" class="text-button">Limpiar</button>
+          </div>
+
+          <div class="filter-group">
+            <label for="priceMin">Precio mínimo</label>
+            <input id="priceMin" type="number" min="0" step="1000" value="0" />
+          </div>
+
+          <div class="filter-group">
+            <label for="priceMax">Precio máximo</label>
+            <input id="priceMax" type="number" min="0" step="1000" value="300000" />
+          </div>
+
+          <div class="filter-group">
+            <label for="availabilityFilter">Disponibilidad</label>
+            <select id="availabilityFilter">
+              <option value="Todos">Todos</option>
+              <option value="Disponible">Disponible</option>
+              <option value="Pocas unidades">Pocas unidades</option>
+              <option value="Agotado">Agotado</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="sizeFilter">Talla</label>
+            <select id="sizeFilter">
+              <option value="Todos">Todos</option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="colorFilter">Color</label>
+            <select id="colorFilter">
+              <option value="Todos">Todos</option>
+              <option value="Negro">Negro</option>
+              <option value="Blanco">Blanco</option>
+              <option value="Azul">Azul</option>
+              <option value="Rojo">Rojo</option>
+              <option value="Gris">Gris</option>
+            </select>
+          </div>
+
+          <div class="filter-group checkbox-group">
+            <label>
+              <input id="offerOnly" type="checkbox" />
+              Solo ofertas
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <label for="sortProducts">Ordenar por</label>
+            <select id="sortProducts">
+              <option value="featured">Destacados</option>
+              <option value="price-asc">Precio menor a mayor</option>
+              <option value="price-desc">Precio mayor a menor</option>
+              <option value="newest">Más recientes</option>
+              <option value="bestseller">Más vendidos</option>
+            </select>
+          </div>
+        </aside>
+
+        <div class="catalog-content">
+          <div class="catalog-summary">
+            <h2>Productos</h2>
+            <p id="resultsInfo">Mostrando productos</p>
+          </div>
+          <div id="productGrid" class="product-grid" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-panel" id="cartPanel" aria-label="Carrito de compras">
+      <div class="cart-header">
+        <h2>Carrito</h2>
+        <button id="closeCart" class="icon-button" aria-label="Cerrar carrito">×</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+
+      <div class="coupon-box">
+        <label for="couponInput">Cupón</label>
+        <div class="coupon-row">
+          <input id="couponInput" type="text" placeholder="LOGICODE10" />
+          <button id="applyCoupon" type="button" class="btn btn-primary btn-small">Aplicar</button>
+        </div>
+        <p id="couponMessage" class="coupon-message"></p>
+      </div>
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong id="subtotalValue">$0</strong>
+        </div>
+        <div class="summary-row">
+          <span>Descuento</span>
+          <strong id="discountValue">-$0</strong>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <strong id="totalValue">$0</strong>
+        </div>
+      </div>
+
+      <div class="checkout-actions">
+        <button id="clearCart" class="btn btn-ghost btn-full">Vaciar carrito</button>
+        <button id="checkoutWhatsApp" class="btn btn-primary btn-full">FINALIZAR PEDIDO POR WHATSAPP</button>
+      </div>
+    </aside>
+
+    <div id="productModal" class="product-modal hidden" aria-hidden="true">
+      <div class="modal-backdrop" data-close="modal"></div>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" data-close="modal" aria-label="Cerrar detalle del producto">×</button>
+        <div id="productModalContent"></div>
+      </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/catalogo-pro.js"></script>
+  </body>
+</html>

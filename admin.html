@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Demo | LogiCode</title>
+    <meta name="description" content="Panel administrativo de demostración para catálogo PRO de LogiCode." />
+    <link rel="icon" href="img/logo/favicon-placeholder.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/catalogo-pro.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+      .admin-shell {
+        padding: 120px 0 80px;
+      }
+      .admin-grid {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 24px;
+      }
+      .admin-sidebar,
+      .admin-content {
+        background: #fff;
+        border: 1px solid rgba(11, 31, 58, 0.08);
+        border-radius: 22px;
+        box-shadow: 0 18px 50px rgba(12, 25, 45, 0.08);
+      }
+      .admin-sidebar {
+        padding: 24px;
+      }
+      .admin-sidebar nav {
+        display: grid;
+        gap: 12px;
+      }
+      .admin-sidebar a {
+        display: block;
+        padding: 12px 14px;
+        border-radius: 12px;
+        color: #1a2a3a;
+        font-weight: 600;
+      }
+      .admin-sidebar a.active,
+      .admin-sidebar a:hover {
+        background: #edf4ff;
+        color: #0b1f3a;
+      }
+      .admin-content {
+        padding: 24px;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(150px, 1fr));
+        gap: 18px;
+        margin-bottom: 24px;
+      }
+      .stat-box {
+        background: linear-gradient(135deg, #edf5ff, #f7faff);
+        border: 1px solid rgba(11, 31, 58, 0.06);
+        border-radius: 18px;
+        padding: 20px;
+      }
+      .stat-box strong {
+        display: block;
+        font-size: 1.8rem;
+        color: #0b1f3a;
+      }
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+      .admin-table th,
+      .admin-table td {
+        padding: 12px 10px;
+        border-bottom: 1px solid #e8edf5;
+        text-align: left;
+      }
+      .status-badge {
+        display: inline-flex;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+      .status-badge.available { background: #e9f9ef; color: #1a8a53; }
+      .status-badge.low { background: #fff4db; color: #b77300; }
+      .status-badge.out { background: #ffe6ec; color: #c13255; }
+      .admin-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+      .admin-toolbar .btn {
+        margin-left: 12px;
+      }
+    </style>
+  </head>
+  <body class="admin-page">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="LogiCode">
+          <span class="brand-mark">L</span>
+          <span class="brand-text">LogiCode</span>
+        </a>
+        <nav class="main-nav" aria-label="Menú admin">
+          <a href="index.html">Inicio</a>
+          <a href="catalogo-pro.html">Catálogo PRO</a>
+          <a href="admin.html" class="active">Admin demo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="admin-shell">
+      <div class="container admin-grid">
+        <aside class="admin-sidebar">
+          <h2>Panel</h2>
+          <nav>
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Productos</a>
+            <a href="#">Categorías</a>
+            <a href="#">Inventario</a>
+            <a href="#">Pedidos</a>
+            <a href="#">Cupones</a>
+          </nav>
+        </aside>
+
+        <section class="admin-content">
+          <div class="admin-toolbar">
+            <div>
+              <span class="eyebrow">DEMO</span>
+              <h2>Dashboard administrativo</h2>
+            </div>
+            <div>
+              <button class="btn btn-primary">Agregar producto</button>
+              <button class="btn btn-secondary">Exportar</button>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-box">
+              <span>Productos registrados</span>
+              <strong id="totalProducts">0</strong>
+            </div>
+            <div class="stat-box">
+              <span>Disponibles</span>
+              <strong id="availableProducts">0</strong>
+            </div>
+            <div class="stat-box">
+              <span>Agotados</span>
+              <strong id="outOfStockProducts">0</strong>
+            </div>
+            <div class="stat-box">
+              <span>Ventas del mes</span>
+              <strong>$75K</strong>
+            </div>
+          </div>
+
+          <div class="admin-toolbar">
+            <h3>Inventario</h3>
+            <button class="btn btn-ghost">Filtrar</button>
+          </div>
+
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody"></tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>
