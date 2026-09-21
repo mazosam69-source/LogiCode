@@ -5,9 +5,9 @@ const CONFIG = window.CONFIG || {
   city: 'Puerto Boyacá, Boyacá, Colombia',
   address: 'MI_DIRECCION',
   businessHours: 'HORARIO DE ATENCIÓN',
-  existingCatalogUrl: 'https://mazosam69-source.github.io/tienda-online-prueba/',
+  existingCatalogUrl: 'https://mazosam69-source.github.io/CATALOGO/',
   whatsappMessage: 'Hola LogiCode, quiero solicitar información sobre sus servicios.',
-  catalogProUrl: 'catalogo-pro.html'
+  catalogProUrl: 'https://mazosam69-source.github.io/CATALOGOPRO/catalogo-pro.html#productos'
 };
 
 document.getElementById('year').textContent = new Date().getFullYear();
