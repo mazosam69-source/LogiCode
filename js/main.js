@@ -5,7 +5,7 @@ const CONFIG = window.CONFIG || {
   city: 'Puerto Boyacá, Boyacá, Colombia',
   address: 'MI_DIRECCION',
   businessHours: 'HORARIO DE ATENCIÓN',
-  existingCatalogUrl: 'https://mazosam69-source.github.io/CATALOGO/',
+  existingCatalogUrl: 'https://mazosam69-source.github.io/CATALOGOa/',
   whatsappMessage: 'Hola LogiCode, quiero solicitar información sobre sus servicios.',
   catalogProUrl: 'https://mazosam69-source.github.io/CATALOGOPRO/catalogo-pro.html#productos'
 };
